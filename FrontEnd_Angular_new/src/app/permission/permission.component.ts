@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Permissionlist } from '../model/permissionlist';
+import { FunctionsService} from '../services/functions.service';
 
 @Component({
   selector: 'app-permission',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PermissionComponent implements OnInit {
 
-  constructor() { }
+  permissionlist : Permissionlist[];
 
-  ngOnInit(): void {
-  }
+  constructor(private functionsService: FunctionsService) { }
+
+  ngOnInit(){
+    this.functionsService.findAllPermission().subscribe(data => {
+      this.permissionlist = data;
+  });
+
+};
+
+
+
+
 
 }

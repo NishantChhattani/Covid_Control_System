@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Outinglist } from '../model/outinglist';
+import { FunctionsService} from '../services/functions.service';
 
 @Component({
   selector: 'app-outing',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OutingComponent implements OnInit {
 
-  constructor() { }
+  outinglist : Outinglist[];
 
-  ngOnInit(): void {
-  }
+  constructor(private functionsService: FunctionsService) { }
+
+  ngOnInit(){
+    this.functionsService.findAllOuting().subscribe(data => {
+      this.outinglist = data;
+  });
+
+};
+
+
+
+
 
 }
+

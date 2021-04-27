@@ -16,6 +16,7 @@ import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { PermissionComponent } from './permission/permission.component';
 import { TracinglistComponent } from './tracinglist/tracinglist.component';
 import { OutingComponent } from './outing/outing.component';
+import { TracingaddComponent } from './tracingadd/tracingadd.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { OutingComponent } from './outing/outing.component';
     PmComponent,
     PermissionComponent,
     TracinglistComponent,
-    OutingComponent
+    OutingComponent,
+    TracingaddComponent
   ],
   imports: [
     BrowserModule,

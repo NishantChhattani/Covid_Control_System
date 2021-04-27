@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TracinglistComponent } from './tracinglist/tracinglist.component';
+import { TracingaddComponent } from './tracingadd/tracingadd.component';
 import { OutingComponent } from './outing/outing.component';
 import { PermissionComponent } from './permission/permission.component';
 import { RegisterComponent } from './register/register.component';
@@ -26,6 +27,10 @@ const routes: Routes = [
     {
         path: 'tracinglist',
         component: TracinglistComponent
+    },
+    {
+        path: 'tracingadd',
+        component: TracingaddComponent
     },
     {
         path: 'outing',

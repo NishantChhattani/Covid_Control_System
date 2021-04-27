@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Tracinglist } from '../model/tracinglist';
+import { FunctionsService} from '../services/functions.service';
 
 @Component({
   selector: 'app-tracinglist',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TracinglistComponent implements OnInit {
 
-  constructor() { }
+  tracinglist : Tracinglist[];
 
-  ngOnInit(): void {
-  }
+  constructor(private functionsService: FunctionsService) { }
+
+  ngOnInit(){
+    this.functionsService.findAllTracing().subscribe(data_t => {
+      this.tracinglist = data_t;
+  });
+
+};
+
+
+
+
 
 }
