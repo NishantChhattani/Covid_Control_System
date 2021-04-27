@@ -1,13 +1,14 @@
 package com.loizenai.jwtauthentication.model;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "tracing")
 public class Tracing {
+
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@Column(name = "id",unique=true, nullable = false)
+    private int id;
     private  String email;
     private String name;
     private  int room;
@@ -15,11 +16,11 @@ public class Tracing {
     private  int drivercontact;
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

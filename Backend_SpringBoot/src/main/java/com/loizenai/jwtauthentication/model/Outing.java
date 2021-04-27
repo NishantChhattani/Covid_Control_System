@@ -2,7 +2,7 @@ package com.loizenai.jwtauthentication.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "outing")
@@ -15,6 +15,24 @@ public class Outing {
     private String reason;
     private String day;
     private int duration; //in Hours
+    private LocalTime outgoingtime;
+    private LocalTime returningtime;
+
+    public LocalTime getOutgoingtime() {
+        return outgoingtime;
+    }
+
+    public void setOutgoingtime(LocalTime outgoingtime) {
+        this.outgoingtime = outgoingtime;
+    }
+
+    public LocalTime getReturningtime() {
+        return returningtime;
+    }
+
+    public void setReturningtime(LocalTime returningtime) {
+        this.returningtime = returningtime;
+    }
 
     public long getId() {
         return id;

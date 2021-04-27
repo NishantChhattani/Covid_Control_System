@@ -3,6 +3,7 @@ import com.loizenai.jwtauthentication.message.request.LoginForm;
 import com.loizenai.jwtauthentication.model.User;
 import com.loizenai.jwtauthentication.repository.PermissionRepository;
 import com.loizenai.jwtauthentication.model.Permission;
+import com.loizenai.jwtauthentication.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 import java.security.Certificate;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/api/permission")
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -34,10 +36,14 @@ public class PermissionController {
     public List<Permission> getPermission() {
         return (List<Permission>) permissionRepository.findAll();
     }
+
     @PostMapping("/add")
     void addPermission(@RequestBody Permission permission) {
 
-        permission.setName(getCurrentUsername());
+        //permission.setName(getCurrentUsername());
+        permission.setName(getname());
+        permission.setEmail(getemail());
+        permission.setStatus("Pending");
         permissionRepository.save(permission);
     }
 
@@ -51,5 +57,40 @@ public class PermissionController {
         }
         return String.valueOf(principal);
     }
+
+    @Autowired
+    UserRepository userRepository;
+
+    //@Autowired
+    //PermissionRepository permissionRepository;
+
+    public String getemail()
+    {
+        User User = userRepository.findByUsername(getCurrentUsername()).orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+        return User.getEmail();
+    }
+
+    public String getname()
+    {
+        User User = userRepository.findByUsername(getCurrentUsername()).orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+        return User.getName();
+    }
+
+
+    @PostMapping("/update+")
+    void accept(String email) {
+        Permission permission = permissionRepository.findByemail(email);
+        permission.setStatus("Accepted");
+        permissionRepository.save(permission);
+    }
+
+    @PostMapping("/update-")
+    void deny(String email) {
+        Permission permission = permissionRepository.findByemail(email);
+        permission.setStatus("Denied");
+        permissionRepository.save(permission);
+    }
+
+
 
 }

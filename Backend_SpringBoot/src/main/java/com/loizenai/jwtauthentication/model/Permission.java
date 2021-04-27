@@ -4,9 +4,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.Authentication;
 //package com.loizenai.jwtauthentication.model.User;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.security.Principal;
 import java.util.Map;
 
@@ -15,16 +13,47 @@ import java.util.Map;
 public class Permission {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long pid;
+    private String email;
     private String msg;
     private String day;
+    private String status;
+/*
+    public Permission(long pid, String email, String msg, String day, String status, String name, int duration) {
+        this.pid = pid;
+        this.email = email;
+        this.msg = msg;
+        this.day = day;
+        this.status = status;
+        this.name = name;
+        this.duration = duration;
+    }
+*/
+    private String name;
     private int duration;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    private String name;
+
 
     public long getPid() {
         return pid;

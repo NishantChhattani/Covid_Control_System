@@ -1,6 +1,11 @@
 package com.loizenai.jwtauthentication.repository;
 
 import com.loizenai.jwtauthentication.model.Permission;
+import com.loizenai.jwtauthentication.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PermissionRepository extends JpaRepository<Permission, Long> {}
+import java.util.Optional;
+
+public interface PermissionRepository extends JpaRepository<Permission, Long> {
+    Permission findByemail(String email);
+}
