@@ -7,5 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface PermissionRepository extends JpaRepository<Permission, Long> {
-    Permission findByemail(String email);
+    //Permission findByemail(String email);
+    Permission findBypid(Long pid);
 }

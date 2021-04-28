@@ -78,15 +78,16 @@ public class PermissionController {
 
 
     @PostMapping("/update+")
-    void accept(String email) {
-        Permission permission = permissionRepository.findByemail(email);
+    void accept(Long pid) {
+        Permission permission = permissionRepository.findBypid(pid);
         permission.setStatus("Accepted");
         permissionRepository.save(permission);
     }
 
     @PostMapping("/update-")
-    void deny(String email) {
-        Permission permission = permissionRepository.findByemail(email);
+    void deny(Long pid) {
+        //Permission permission = permissionRepository.findByemail(email);
+        Permission permission = permissionRepository.findBypid(pid);
         permission.setStatus("Denied");
         permissionRepository.save(permission);
     }
