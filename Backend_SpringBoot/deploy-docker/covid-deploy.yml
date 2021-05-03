@@ -1,0 +1,8 @@
+---
+- name: Pull docker image of covid_control_system
+  hosts: all
+  tasks:
+    - name: Pull image
+      docker_image:
+        name: nishantchhattani/covid_control_system
+        source: pull
